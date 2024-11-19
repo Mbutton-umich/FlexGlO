@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header-text {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .header-gif {
+            flex: 1;
+            text-align: center;
+        }
+        .header-gif img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .header-gif p {
+            font-style: italic;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-section">
+            <!-- Title and Description -->
+            <div class="header-text">
+                <h1>{{ page.title }}</h1>
+                <p>{{ page.description }}</p>
+            </div>
+
+            <!-- GIF with Caption -->
+            <div class="header-gif">
+                <img src="/assets/images/demo.gif" alt="FlexGlO demo">
+                <p>Figure 1: FlexGlO in action, showcasing muscle activation.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>&copy; {{ site.time | date: "%Y" }} FlexGlO. All rights reserved.</p>
+    </footer>
+</body>
+</html>
