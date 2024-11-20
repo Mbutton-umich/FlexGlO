@@ -1,3 +1,7 @@
 layout: custom
 title: FlexGlO Initial Setup
 description: See my ned project!
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
