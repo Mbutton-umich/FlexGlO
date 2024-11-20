@@ -39,13 +39,19 @@
     <div class="container-lg px-3 my-5 markdown-body">
       
 
-      <div style="background-color: #f8f9fa; padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
+      <head>
+  <!-- KaTeX CSS for styling -->
+  <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+<div style="background-color: #f8f9fa; padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
   <p style="margin: 0; font-size: 14px; color: grey; font-style: italic;">
     Co-Designers:
     Matt (<a href="https://github.com/Mbutton-umich" style="color: blue; text-decoration: none;">Mbutton-umich</a>),
     Ernesto (<a href="https://github.com/ernestogomezs" style="color: blue; text-decoration: none;">ernestogomezs</a>),
-    Sammy (<a href="https://github.com/charlie" style="color: blue; text-decoration: none;">GitHub</a>),
-    Pablo (<a href="https://github.com/dana" style="color: blue; text-decoration: none;">GitHub</a>), and
+    Pablo (<a href="https://github.com/pgaracu" style="color: blue; text-decoration: none;">pgaracu</a>),
+    Sammy (<a href="https://github.com/dana" style="color: blue; text-decoration: none;">GitHub</a>), and
     Youssouf (<a href="https://github.com/eve" style="color: blue; text-decoration: none;">GitHub</a>)
   </p>
 </div>
@@ -105,17 +111,12 @@
 </div>
 
 <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
-  <!-- First GIF -->
   <div style="flex: 1; text-align: center; padding-right: 10px; border-right: 1px solid #ccc;">
-    <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 1" style="max-width: 100%; height: auto;" />
+    <img src="assets/images/shirt_layout.png" alt="Shirt Layout" style="max-width: 100%; height: auto;" />
   </div>
-
-  <!-- Second GIF -->
   <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
     <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 2" style="max-width: 100%; height: auto;" />
   </div>
-
-  <!-- Third GIF -->
   <div style="flex: 1; text-align: center; padding-left: 10px;">
     <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 3" style="max-width: 100%; height: auto;" />
   </div>
@@ -124,32 +125,128 @@
 <p style="text-align: center; font-style: italic; margin-top: 10px;">
   Fig. II: <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> Muscle Shirt in Action.
 </p>
-
-<hr />
-
-<h2 id="the-initial-idea">The Initial Idea</h2>
-
 <div id="implementation-section" style="text-align: left; margin-top: 40px; margin-bottom: 20px;">
-  <h1 style="font-size: 24px; font-weight: bold; color: black;">SPECIAL THANKS</h1>
-  <p style="font-size: 14px; color: black; font-style: italic;">
-    A huge thanks to our contributors: 
-    <a href="https://github.com/alice" style="color: blue; text-decoration: none;">Alice</a>, 
-    <a href="https://github.com/bob" style="color: blue; text-decoration: none;">Bob</a>, and 
-    <a href="https://github.com/charlie" style="color: blue; text-decoration: none;">Charlie</a> 
-    for their incredible support.
-  </p>
-</div>
+  <h1>Implementation Details</h1>
+  Sales speak aside we developed this "muscle shirt" over the course of three months and kept our budget to under $1000.00. In this general summary we <strong style="color: blue;">bolded</strong> some key terms if you are interested in tackling similar challenges or projects with similar components.
+  <br /><br />
+  <p>Aquiring muscle signals for EMG and EKG is done using Analog Devices <strong style="color: blue;">AD623</strong> a moderately priced chip that works well for breadboarding because it still comes in a DIP package. The <strong style="color: blue;">single-supply analog filters</strong> all utilize <strong style="color: blue;">TLV246X</strong> chips from Texas Instruments (TI) which again come in DIP packages and are well supported by TI's simple SPICE simulator and filter design widget. We selected <strong style="color: blue;">ESP32-S3 WROOM 1</strong> as the platform for the project for several reasons: the module's integrated antenna, the dual core, and its support and ubiquity amongst hobbyists. All of the code was developed in <strong style="color: blue;">Arduino IDE</strong> in <strong style="color: blue;">embedded C</strong> utilizing <strong style="color: blue;">FreeRTOS</strong> and <strong style="color: blue;">hardware timers</strong> for strict scheduling. The eventual PCBs were created in <strong style="color: blue;">KiCad</strong>. We use <strong style="color: blue;">multi-channel continuous reads over DMA (direct memory access)</strong> to sample up to three muscles at once at every node. That information is then aggregated and processed quickly to be displayed in <strong style="color: blue;">realtime</strong> with quick updates to <strong style="color: blue;">WS2813 LED strips</strong> using the <strong style="color: blue;">FastLED library</strong>. We also quickly send updates to a <strong style="color: blue;">Flutter</strong> mobile application from all five nodes across the upper body. This app allows users to view muscle activation across the whole upper body, or to zoom in and see a live oscilloscope-style view of any particular muscle. From the app, you can also change the LED colors or log data for later analysis. At the tail end of the project, we also tried to do some movement identification once data is collected at the app in <strong style="color: blue;">Dart</strong> using some binary matrix manipulations.
+  
+  <h2 style="margin-left: 20px; font-style: italic;">Analog Acquisition</h2>
 
-<div id="special-thanks-section" style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
-  <h2 style="font-size: 18px; font-weight: bold; color: black;">SPECIAL THANKS</h2>
-  <p style="font-size: 14px; color: black; font-style: italic;">
-    A huge thanks to our contributors: 
-    <a href="https://github.com/alice" style="color: blue; text-decoration: none;">Alice</a>, 
-    <a href="https://github.com/bob" style="color: blue; text-decoration: none;">Bob</a>, and 
-    <a href="https://github.com/charlie" style="color: blue; text-decoration: none;">Charlie</a> 
-    for their incredible support.
+  <div style="display: block; padding-bottom: 20px;">
+    <!-- Left side: First paragraph -->
+    <p style="padding-left: 20px;">
+      We use an Analog Devices instrumentation amplifier AD623 as the pre-Amp phase to extract muscle signals off of the surface of the skin. As you flex a given muscle neurons are firing a ripple of activation signals along the muscle fibers that propogate out to the surface of the skin. With a high impedance differential amplifier we can measure the differnce in voltage between two close points and quantify that activation energy. Under the shirt, users need to put roughly 30 Red Dot Electrodes that button nicely into our electrode snaps and feed into each node via 2.5 mm TRRS (AUX) jacks. It took a lot of testing to select the correct gain resistor for EMG and EKG. We initially used a potentiometer to dial in the correct gain for our purposes; unfortunately, we found the resistance on the breadboard to be pretty finicky and unstable. For the PCB, we landed on 300&Omega; for the EMG and 100&Omega; for the EKG circuit. These minscule muscle activation signals are in the range [50&mu;V, 30mV] for EMG and [500&mu;V, 5mV] for EKG. We needed strike a balance and select a gain that is large enough to bring these voltages into the full range of our ADC ([0, 3.3]V) but not so large that upon activation we get instant saturation. From the AD623 datasheet that places our selected gains at:
+    </p>
+      <div style="text-align: center; margin-top: 30px;">
+        $$
+          R_G = \frac{100\, \text{k}\Omega}{G - 1} \implies G = 1 + \frac{100\, \text{k}\Omega}{R_G} \implies 
+          \left\{
+            \begin{array}{l}
+              G_{EMG} = 1 + \frac{100\, \text{k}\Omega}{300 \, \Omega} = 334.33 \\
+              G_{EKG} = 1 + \frac{100\, \text{k}\Omega}{100 \, \Omega} = 1000
+            \end{array}
+          \right.
+        $$
+      </div>
+      <p style="padding-left: 20px;"> 
+      From the jump, we also wanted to avoid the dual-supply setup we saw on a lot of online EXG tutorials. So we used a voltage divider at the reference pin to bump negative muscle signals into the [0, 3.3]V range within the rails. For the entire analog design process, we relied heavily on TI's <a href="https://webench.ti.com/filter-design-tool/filter-type" style="color: blue;">Filter Design Tool</a> and made sure to scale things to the most common ceramic capacitor and resistor sizes where possible.
+    </p>
+    
+    <!-- Bullet list and paragraph placed under the first paragraph -->
+    <p style="padding-left: 20px;">There were also three other TI "Application Reports" that were super helpful <em>especially the last one</em> which explicitly shows how to modify things for single-supply:</p>
+    <ul style="text-align: left; margin-top: 10px; padding-left: 120px;">
+      <li><a href="https://www.ti.com/lit/an/sloa024b/sloa024b.pdf" style="color: blue;">Analysis of Sallen-Key Architecture</a></li>
+      <li><a href="https://www.ti.com/lit/an/sloa030a/sloa030a.pdf" style="color: blue;">Single-Supply Op Amp Design Techniques</a></li>
+      <li><a href="https://www.ti.com/lit/an/sloa096/sloa096.pdf" style="color: blue;">More Filter Design on a Budget</a></li>
+    </ul>
+  </div>
+  <div>
+       <p style="padding-left: 20px;">
+      After the instrumentation amp the boosted signal proceeds through a series of filter stages. For the EMG we use a Sallen-Key Low Pass followed by a Sallen-Key High Pass filter to create a bandpass and extract relevant EMG frequencies in the range [5, 500]Hz. After the bandpass the the final stage is a two amp Fleige Notch Filter to remove 60Hz interference which was very prevalent in the lab where we did most of our testing. The EMG filter architecture is shown below using a rail-to-rail quad-amp TLV2464 IC from TI (and the EKG schematic is in the Git):
+    </p>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <img src="assets/images/EMG_filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;" />
+    <p style="font-style: italic; margin-top: 8px; text-align: center;">
+      Fig. V: The EMG filter schematic.
+    </p>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <div style="flex: 1; padding-right: 20px;">
+      <p style="padding-left: 20px;">
+        The EKG circuit is similar to the EMG with just changes to the electrode placement and the filter passives to bring the frequency range within [0.2, 200]Hz. After their conception, we used TINA (TI's Interactive Network Analyze) to simulate both the EKG and EMG circuits. To the right is an ad-hoc sweep of the EMG filter to make sure the bandpass cutoffs are about right. TINA was pretty useful because we had at least some assurance that the circuit would work before ever ordering parts. We also got a nice frequency response plot of the circuit. In simulation for example, we could tune the depth and width of the 60Hz notch by playing with the values of the R_M_O# pair of resistors in the schematic.
+        <img src="assets/images/EMG_filter_sim.jpg" alt="EMG Sim" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
+      </p>
+    </div>
+    
+    <!-- Right side: Image and caption -->
+    <div style="text-align: right; max-width: 100%; display: inline-block;">
+      <img src="assets/gifs/cropped_sim.gif" alt="FlexGlO demo GIF" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
+    </div>
+  </div>
+
+<div>
+  <p style="font-style: italic; margin-top: 8px; text-align: center; max-width: 100%; word-wrap: break-word;">
+    Fig. IV: [Right] TINA Simulator Oscilloscope showing the response of the full EMG filter at different frequencies.<br />[Bottom] Bode Plot of showing filter magnitude and phase.
   </p>
+  </div>
+  <div>
+    <p style="padding-left: 20px;">
+    After all that simulation we purchased through-hole parts to build the circuit in breadboard form. For uniformity we stuck with Yageo for resitors and Kemet for capacitors maintaining &le;5% tolerances to keep the circuit realization close to the simulations. The EMG breadboard worked without issue despite the tangled mess of the Notch filter on the small breadboard.
+    <br /><br />
+    However our EKG proved more challenging as the signal was very weak when we used the canonical three-lead electrode placement from SENIAM (Surface ElectroMyoGraphy for the Non-Invasive Assessment of Muscles). At maximum gain the heartbeat was still almost too faint to be recognized by the ADC. Also moving your leg, breathing, or flexing your chest would drag the signal all around. A great link: <a href="https://www.aclsmedicaltraining.com/blog/guide-to-understanding-ecg-artifact/" style="color: blue; text-decoration: none;">Guide to Understanding ECG Artifact</a>, allowed us to understand we were witnessing a "wandering baseline". To remedy this issue we changed from a bandpass and notch combination to a lone narrow bandpass in the range [0.25, 25]Hz. We also experimented with alternative electrode placement to obtain a stronger heartbeat signal. After trying a F-EKG three-lead constellation with placement on the sternum and lower left rib we had better results. This electrode constellation captures the "&epsilon;-Wave" as opposed to the "R-Wave" and it just worked better for our purposes of capturing a BPM.
+    </p>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
+  <!-- First GIF -->
+  <div style="flex: 1; text-align: center; padding-right: 10px; border-right: 1px solid #ccc;">
+    <img src="assets/gifs/analog_EMG_test.gif" alt="EMG Test" style="max-width: 100%; height: auto;" />
+  </div>
+
+  <!-- Second GIF -->
+  <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/EMG_Breadboard.jpg" alt="EMG Breadboard" style="max-width: 100%; height: auto;" />
+  </div>
+
+  <!-- Third GIF -->
+  <div style="flex: 1; text-align: center; padding-left: 10px;">
+    <img src="assets/gifs/analog_EKG_test.gif" alt="EKG Test" style="max-width: 100%; height: auto;" />
+  </div>
 </div>
+<p style="text-align: center; font-style: italic; margin-top: 10px;">
+  Fig. VI: [Left] EMG analog test with LED output. [Center] EMG I-Amp and Filter Breadboard. [Righ] EKG analog test with LED output.
+</p>
+
+<h2 style="margin-left: 20px; font-style: italic;">Digital Sampling and Conditioning</h2>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+  <!-- Left side: Image and caption -->
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/images/digi_block_diag.png" alt="ADC Block Diagram" style="max-width: 100%; height: auto; border-radius: 8px;" />
+    <p style="font-style: italic; margin-top: 8px;">Fig. X: Block diagram of muscle signal sampling and conditioning.</p>
+  </div>
+
+  <!-- Right side: Text content -->
+  <div style="flex: 1; padding-left: 20px;">
+    <p>
+      After all the hard work aquiring and cleaning the muscle signals we eventually pass them through the ESP32-S3's ADC and into the digital domain. Recall that each node has at most three muscles (EMG0, EMG1, and EKG), so initally we were doing single shot conversions for three channels. Also recall that EMG is in the range [5, 500]Hz so we wanted to sample above the Nyquist rate of 1kHz. As we got closer to 1kHz we found the CPU was overwhelmed with all of the interrupts for sampling all three channels. To reduce the load on the CPU we instead switched to a continuous sampling of three channels over DMA. Although there was example code for continous sampling on a single channel of the ESP32 ADC there was less support for multi-channel sampling via DMA. Fortunately the Expressif documentation was decently clear and after a small struggle we were able to configure the DMA appropriotely. The sampling and signal conditioning process largely follows the block diagram to the left:
+      <br /><br />
+      Everything occurs sequentially on Core 1: DMA fills its buffer which releases the process_ADC FreeRTOS task. After process_ADC finishes the process_LEDs task is released and will display our most recently measured values via the LEDs. And to be clear when I say "released" I mean we use defferred interrupt handling. So a quick interrupt sets a flag that unblocks a task or I explcitly release a task which in FreeRTOS-speak means using <span style="font-family: Consolas, monospace;">xTaskNotifyGive(...)</span>.
+      <br /><br />
+      A few more notes on design decisions. We had to rectify digitally because we made our analog front end single-supply. Normally, with a zero centered signal we could just add a diode bridge at the end of the filters and an RC smoother to rectify the signal. However, with the 1.65V offset single-supply signal we just flip the lower values coming off the ADC. This way we can get a kind of absolute value for muscle activity which is translated into levels once given to the process_LEDs task.
+    </p>
+  </div>
+</div>
+  <div>
+    <p style="padding-left: 20px;">
+    It's also worth noting everything about the conditioning pipeline is parameterized. We experimented with different DMA buffer sizes and the subsequent median filter window lengths. Again from testing we had to strike a balance: if the filter window is too long we flatten away brief moments of muscular exertion and its difficult to max out the LED bar; if we make it too short we don't smooth out the divots from rectification and the LEDs look very flickery and faint. Also if you make the buffer too big we produce a median at a rate below the Nyquist and allias effects take hold. In the end we selected a window of size 8 at 8kHz DMA. Before switching to DMA we had actually used a moving average filter but with the DMA setup we are collecting data in bunches of full buffers so the median filter (which was more robust against occasional noisy outliers) was a better choice for a similar computational cost.
+
+    Finally, the Arduino serial plotter was a particularly useful tool for debugging all of this ADC code. We could visually inspect how the signals are sampling and rectifying and averaging to make judgments about the qaulity of our signal chain. Although at high sampling frequencies the <span style="font-family: Consolas, monospace;">Serial.print(...)</span> would lag or crash it was a heavily leveraged asset.
+    </p>
+  </div>
+</p></div>
 
 
       
