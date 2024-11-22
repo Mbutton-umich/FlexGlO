@@ -142,7 +142,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     <div style="flex: 1; padding-right: 20px;">
       <p style="padding-left: 20px;">
         The EKG circuit is similar to the EMG with just changes to the electrode placement and the filter passives to bring the frequency range within [0.2, 200]Hz. After their conception, we used TINA (TI's Interactive Network Analyze) to simulate both the EKG and EMG circuits. To the right is an ad-hoc sweep of the EMG filter to make sure the bandpass cutoffs are about right. TINA was pretty useful because we had at least some assurance that the circuit would work before ever ordering parts. We also got a nice frequency response plot of the circuit. In simulation for example, we could tune the depth and width of the 60Hz notch by playing with the values of the R_M_O# pair of resistors in the schematic.
-        <img src="assets/images/EMG_filter_sim.jpg" alt="EMG Sim" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;">
+        <img src="assets/images/EMG_Filter_sim.jpg" alt="EMG Sim" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;">
       </p>
     </div>
     
@@ -151,6 +151,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
       <img src="assets/gifs/cropped_sim.gif" alt="FlexGlO demo GIF" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;">
     </div>
   </div>
+  
 
 <div>
   <p style="font-style: italic; margin-top: 8px; text-align: center; max-width: 100%; word-wrap: break-word;">
