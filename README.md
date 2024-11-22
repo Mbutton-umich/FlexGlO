@@ -219,3 +219,46 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
+<h2 style="margin-left: 20px; font-style: italic;">Fiber Optics...Muscle Fiber Optics</h2>
+
+<div style="text-align: left; margin-left: 20px;">
+  <p>
+    We are fully indebted to the FastLED library, which allows us to update the LED bars and the LED circle for the heart pulse. There were basically no problems with the library, and the interfaces are very clean. The only hiccup involved multiple tasks contending for control of RMT assets. In prior projects, we had bit-banged the data lines for these strips, but we were fortunate that FastLED does this and does it efficiently. For the bars, we simply range down the median coming off the ADC and ignite that number of LEDs. For the EKG circle, the actual heart pulse was too quick and looked very faint, so we used some software tricks to give a "stickiness" to the heartbeat to make it more prominent. FastLED uses the RMT (Remote Control Transceiver) peripherals to bit-bang the precise PWM patterns and encode colors to the strips. The ESP32-S3 has 4 transmission RMT channels, so the three strips compute the colors and levels serially and then update in parallel.
+  </p>
+  <p>
+    We also made a nice "start-up pulse" animation (in maize and blue) and a "waiting to connect" animation. Although we developed these initially as flair for the system, they were actually incredibly useful. When debugging, the chip might crash or disconnect, and having those visual cues was a big help.
+  </p>
+  <p>
+    For the final system on the PCB, we also measured the FPS (frames per second) for all the LEDs updating. We fall within [110, 150] FPS for regular operation. We selected WS2813 strips in particular for several reasons:
+  </p>
+</div>
+
+<div>
+  <ul style="padding-left: 120px; margin-top: 10px;">
+    <li>The dual redundant data lines are good if a cable breaks during regular exercise.</li>
+    <li>The refresh rate is limited by the 280 ns reset time, allowing faster strip updates over the cheaper WS2812B variety.</li>
+    <li>For small strips, the 5V source voltage can be satisfied with only 3.3V.</li>
+  </ul>
+</div>
+
+<div style="text-align: left; margin-left: 20px;">
+  <p>
+    That last point was a particular concern for us because we are running the sensor nodes off of a 3.7V lithium battery and stepping things down further via an LDO to 3.3V. We probably should have included a level shifter, but it would have taken up space on our board. Luckily, after testing on the development breadboard, even the 12 LED circle strip lit up without turning red or fading at only 3.3V.
+  </p>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
+  <div style="flex: 1; text-align: center; padding-right: 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/shirt_layout.png" alt="Shirt Layout" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/framerate.jpg" alt="LED FR" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding-left: 10px;">
+    <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 3" style="max-width: 100%; height: auto;">
+  </div>
+</div>
+
+<p style="text-align: center; font-style: italic; margin-top: 10px;">
+  Fig. II: <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> Muscle Shirt in Action.
+</p>
