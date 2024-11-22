@@ -148,7 +148,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     
     <!-- Right side: Image and caption -->
     <div style="text-align: right; max-width: 100%; display: inline-block;">
-      <img src="assets/gifs/cropped_sim.gif" alt="FlexGlO demo GIF" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;">
+      <img src="assets/gifs/cropped_sim.gif" alt="FlexGlO demo GIF" style="max-width: 70%; height: auto; border-radius: 8px; display: block; margin-left: auto;">
     </div>
   </div>
   
@@ -213,7 +213,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     </p>
   </div>
   <div style="text-align: center; margin-top: 30px;">
-<img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 50%; height: auto; border-radius: 8px;">
+<img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 80%; height: auto; border-radius: 8px;">
 <p style="font-style: italic; margin-top: 8px; text-align: center;">
 Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
