@@ -133,7 +133,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     </p>
     </div>
     <div style="text-align: center; margin-top: 30px;">
-    <img src="assets/images/EMG_filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+    <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;">
     <p style="font-style: italic; margin-top: 8px; text-align: center;">
       Fig. V: The EMG filter schematic.
     </p>
