@@ -209,3 +209,16 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     Finally, the Arduino serial plotter was a particularly useful tool for debugging all of this ADC code. We could visually inspect how the signals are sampling and rectifying and averaging to make judgments about the qaulity of our signal chain. Although at high sampling frequencies the <span style="font-family: Consolas, monospace;">Serial.print(...)</span> would lag or crash it was a heavily leveraged asset.
     </p>
   </div>
+  <div style="text-align: center; margin-top: 30px;">
+<img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 50%; height: auto; border-radius: 8px;">
+<p style="font-style: italic; margin-top: 8px; text-align: center;">
+Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
+</p>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+  <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 60%; height: auto; border-radius: 8px;" />
+  <p style="font-style: italic; margin-top: 8px; text-align: center;">
+    Fig. V: The EMG filter schematic.
+  </p>
+</div>
