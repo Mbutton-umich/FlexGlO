@@ -22,10 +22,17 @@
 {"@context":"https://schema.org","@type":"WebPage","description":"See my new project!","headline":"FlexGlO Initial Setup","url":"http://localhost:4000/README.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=997bc107eb789603569655edb19e985bea771882">
+    <link rel="stylesheet" href="/assets/css/style.css?v=f5b8d11bf41e5cc0d8d3b18739b3058bf834dd80">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
+<!-- Setup Google Analytics -->
 
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
 
   </head>
   <body>
@@ -163,7 +170,7 @@
     </p>
     </div>
     <div style="text-align: center; margin-top: 30px;">
-    <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 60%; height: auto; border-radius: 8px;" />
+    <img src="assets/images/EMG_filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;" />
     <p style="font-style: italic; margin-top: 8px; text-align: center;">
       Fig. V: The EMG filter schematic.
     </p>
@@ -173,7 +180,7 @@
     <div style="flex: 1; padding-right: 20px;">
       <p style="padding-left: 20px;">
         The EKG circuit is similar to the EMG with just changes to the electrode placement and the filter passives to bring the frequency range within [0.2, 200]Hz. After their conception, we used TINA (TI's Interactive Network Analyze) to simulate both the EKG and EMG circuits. To the right is an ad-hoc sweep of the EMG filter to make sure the bandpass cutoffs are about right. TINA was pretty useful because we had at least some assurance that the circuit would work before ever ordering parts. We also got a nice frequency response plot of the circuit. In simulation for example, we could tune the depth and width of the 60Hz notch by playing with the values of the R_M_O# pair of resistors in the schematic.
-        <img src="assets/images/EMG_filter_sim.jpg" alt="EMG Sim" style="max-width: 60%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
+        <img src="assets/images/EMG_filter_sim.jpg" alt="EMG Sim" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
       </p>
     </div>
     

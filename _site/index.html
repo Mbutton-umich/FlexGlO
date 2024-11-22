@@ -22,13 +22,17 @@
 {"@context":"https://schema.org","@type":"WebSite","description":"See my new project!","headline":"FlexGlO Initial Setup","name":"FlexGlO Initial Setup","url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=997bc107eb789603569655edb19e985bea771882">
+    <link rel="stylesheet" href="/assets/css/style.css?v=f5b8d11bf41e5cc0d8d3b18739b3058bf834dd80">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
+<!-- Setup Google Analytics -->
 
 
 
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
 
+<!-- end custom head snippets -->
 
   </head>
   <body>
@@ -159,16 +163,23 @@
   </div>
   <div>
        <p style="padding-left: 20px;">
-    After the instrumentation amp the boosted signal proceeds through a series of filter stages. For the EMG we use a Sallen-Key Low Pass followed by a Sallen-Key High Pass filter to create a bandpass and extract relevant EMG frequencies in the range [5, 500]Hz. After the bandpass the the final stage is a two amp Fleige Notch Filter to remove 60Hz interference which was very prevalent in the lab where we did most of our testing. The EMG filter architecture is shown below using a rail-to-rail quad-amp TLV2464 IC from TI (and the EKG schematic is in the Git):
-  </p>
-</div>
+      After the instrumentation amp the boosted signal proceeds through a series of filter stages. For the EMG we use a Sallen-Key Low Pass followed by a Sallen-Key High Pass filter to create a bandpass and extract relevant EMG frequencies in the range [5, 500]Hz. After the bandpass the the final stage is a two amp Fleige Notch Filter to remove 60Hz interference which was very prevalent in the lab where we did most of our testing. The EMG filter architecture is shown below using a rail-to-rail quad-amp TLV2464 IC from TI (and the EKG schematic is in the Git):
+    </p>
+  </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;" />
+    <p style="font-style: italic; margin-top: 8px; text-align: center;">
+      Fig. V: The EMG filter schematic.
+    </p>
+  </div>
+    
 
 
   <div style="display: flex; justify-content: space-between; align-items: flex-start;">
     <div style="flex: 1; padding-right: 20px;">
       <p style="padding-left: 20px;">
         The EKG circuit is similar to the EMG with just changes to the electrode placement and the filter passives to bring the frequency range within [0.2, 200]Hz. After their conception, we used TINA (TI's Interactive Network Analyze) to simulate both the EKG and EMG circuits. To the right is an ad-hoc sweep of the EMG filter to make sure the bandpass cutoffs are about right. TINA was pretty useful because we had at least some assurance that the circuit would work before ever ordering parts. We also got a nice frequency response plot of the circuit. In simulation for example, we could tune the depth and width of the 60Hz notch by playing with the values of the R_M_O# pair of resistors in the schematic.
-        <img src="assets/images/EMG_Filter_sim.jpg" alt="EMG Sim" style="max-width: 60%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
+        <img src="assets/images/EMG_filter_sim.jpg" alt="EMG Sim" style="max-width: 100%; height: auto; border-radius: 8px; display: block; margin-left: auto;" />
       </p>
     </div>
     
@@ -237,22 +248,14 @@
     Finally, the Arduino serial plotter was a particularly useful tool for debugging all of this ADC code. We could visually inspect how the signals are sampling and rectifying and averaging to make judgments about the qaulity of our signal chain. Although at high sampling frequencies the <span style="font-family: Consolas, monospace;">Serial.print(...)</span> would lag or crash it was a heavily leveraged asset.
     </p>
   </div>
-</p></div>
-</div>
-<div style="text-align: center; margin-top: 30px;">
-<img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 50%; height: auto; border-radius: 8px;">
+  <div style="text-align: center; margin-top: 30px;">
+<img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 50%; height: auto; border-radius: 8px;" />
 <p style="font-style: italic; margin-top: 8px; text-align: center;">
 Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
-<div style="text-align: center; margin-top: 30px;">
-  <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 60%; height: auto; border-radius: 8px;" />
-  <p style="font-style: italic; margin-top: 8px; text-align: center;">
-    Fig. V: The EMG filter schematic.
-  </p>
-</div>
-
+</p></div>
 
 
       
@@ -265,4 +268,3 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
     <script>anchors.add();</script>
   </body>
 </html>
-

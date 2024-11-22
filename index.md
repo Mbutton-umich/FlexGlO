@@ -128,13 +128,15 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
        <p style="padding-left: 20px;">
       After the instrumentation amp the boosted signal proceeds through a series of filter stages. For the EMG we use a Sallen-Key Low Pass followed by a Sallen-Key High Pass filter to create a bandpass and extract relevant EMG frequencies in the range [5, 500]Hz. After the bandpass the the final stage is a two amp Fleige Notch Filter to remove 60Hz interference which was very prevalent in the lab where we did most of our testing. The EMG filter architecture is shown below using a rail-to-rail quad-amp TLV2464 IC from TI (and the EKG schematic is in the Git):
     </p>
-    </div>
+  </div>
     <div style="text-align: center; margin-top: 30px;">
-    <img src="assets/images/EMG_filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+    <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;">
     <p style="font-style: italic; margin-top: 8px; text-align: center;">
       Fig. V: The EMG filter schematic.
     </p>
   </div>
+    
+
 
   <div style="display: flex; justify-content: space-between; align-items: flex-start;">
     <div style="flex: 1; padding-right: 20px;">
@@ -216,9 +218,3 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
-<div style="text-align: center; margin-top: 30px;">
-  <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 60%; height: auto; border-radius: 8px;" />
-  <p style="font-style: italic; margin-top: 8px; text-align: center;">
-    Fig. V: The EMG filter schematic.
-  </p>
-</div>
