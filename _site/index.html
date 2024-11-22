@@ -129,7 +129,7 @@
   <h1>Implementation Details</h1>
   Sales speak aside we developed this "muscle shirt" over the course of three months and kept our budget to under $1000.00. In this general summary we <strong style="color: blue;">bolded</strong> some key terms if you are interested in tackling similar challenges or projects with similar components.
   <br /><br />
-  <p>Aquiring muscle signals for EMG and EKG is done using Analog Devices <strong style="color: blue;">AD623</strong> a moderately priced chip that works well for breadboarding because it still comes in a DIP package. The <strong style="color: blue;">single-supply analog filters</strong> all utilize <strong style="color: blue;">TLV246X</strong> chips from Texas Instruments (TI) which again come in DIP packages and are well supported by TI's simple SPICE simulator and filter design widget. We selected <strong style="color: blue;">ESP32-S3 WROOM 1</strong> as the platform for the project for several reasons: the module's integrated antenna, the dual core, and its support and ubiquity amongst hobbyists. All of the code was developed in <strong style="color: blue;">Arduino IDE</strong> in <strong style="color: blue;">embedded C</strong> utilizing <strong style="color: blue;">FreeRTOS</strong> and <strong style="color: blue;">hardware timers</strong> for strict scheduling. The eventual PCBs were created in <strong style="color: blue;">KiCad</strong>. We use <strong style="color: blue;">multi-channel continuous reads over DMA (direct memory access)</strong> to sample up to three muscles at once at every node. That information is then aggregated and processed quickly to be displayed in <strong style="color: blue;">realtime</strong> with quick updates to <strong style="color: blue;">WS2813 LED strips</strong> using the <strong style="color: blue;">FastLED library</strong>. We also quickly send updates to a <strong style="color: blue;">Flutter</strong> mobile application from all five nodes across the upper body. This app allows users to view muscle activation across the whole upper body, or to zoom in and see a live oscilloscope-style view of any particular muscle. From the app, you can also change the LED colors or log data for later analysis. At the tail end of the project, we also tried to do some movement identification once data is collected at the app in <strong style="color: blue;">Dart</strong> using some binary matrix manipulations.
+  <p>Aquiring muscle signals for EMG and EKG is done using Analog Devices <strong style="color: blue;">AD623</strong> a moderately priced chip that works well for breadboarding because it still comes in a DIP package. The <strong style="color: blue;">single-supply analog filters</strong> all utilize <strong style="color: blue;">TLV246X</strong> chips from Texas Instruments (TI) which again come in DIP packages and are well supported by TI's simple SPICE simulator and filter design widget. We selected <strong style="color: blue;">ESP32-S3 WROOM 1</strong> as the platform for the project for several reasons: the module's integrated antenna, the dual core, and its support and ubiquity amongst hobbyists. All of the code was developed in <strong style="color: blue;">Arduino IDE</strong> in <strong style="color: blue;">embedded C</strong> utilizing <strong style="color: blue;">FreeRTOS</strong> and <strong style="color: blue;">hardware timers</strong> for strict scheduling. The system is powered with a generic 3.7V 850mAh Li-Po pouch and regulated with TI's <strong style="color: blue;">TLV1117LV33</strong> to 3.3V at 1A. The eventual PCBs were created in <strong style="color: blue;">KiCad</strong>. We use <strong style="color: blue;">multi-channel continuous reads over DMA (direct memory access)</strong> to sample up to three muscles at once at every node. That information is then aggregated and processed quickly to be displayed in <strong style="color: blue;">realtime</strong> with quick updates to <strong style="color: blue;">WS2813 LED strips</strong> using the <strong style="color: blue;">FastLED library</strong>. We also quickly send updates to a <strong style="color: blue;">Flutter</strong> mobile application from all five nodes across the upper body. This app allows users to view muscle activation across the whole upper body, or to zoom in and see a live oscilloscope-style view of any particular muscle. From the app, you can also change the LED colors or log data for later analysis. At the tail end of the project, we also tried to do some movement identification once data is collected at the app in <strong style="color: blue;">Dart</strong> using some binary matrix manipulations.
   
   <h2 style="margin-left: 20px; font-style: italic;">Analog Acquisition</h2>
 
@@ -298,6 +298,63 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 
 <p style="text-align: center; font-style: italic; margin-top: 10px;">
   Fig. VIII: [Left] PCB outputting random voltages from thumb. [Center] Development breadboard showing smooth level transition with potentiometer. [Right] Startup and wait animations.
+</p>
+
+<h2 style="margin-left: 20px; font-style: italic;">Power Considerations</h2>
+
+<!-- First paragraph outside the flex container -->
+<div style="margin-left: 20px; text-align: left;">
+  <p>
+    Because of how the analog, the code, and the BLE was developed concurrently it was somewhat difficult to ascertain the peak current draw of the full system until we received the PCB. First we did some napkin math:
+  </p>
+</div>
+
+<!-- Flex container for the remaining content -->
+<div style="display: flex; align-items: flex-start; margin-left: 20px; gap: 20px;">
+  <!-- Text container -->
+  <div style="flex: 1;">
+    <p>
+      At "full-white" the addressable RGB LEDs require 60mA of current (20mA for each R-G-B). We have \(10+10+12 = 32 \) LEDs. We wanted to try to keep to a single color channel and after testing decided that 75% brightness was suitable for our purposes. So \(32(1mA+1mA+20mA)(75\%)=528mA\). We also have three instrumentation amps and the filter amps to accompany them; from the breadboard we measured the draw on those to be \(\leq 20mA\). Finally considering the ESP32-S3 current draw: The ESP Hardware Design Guidelines recommends a 500mA LDO to support the device. The datasheet also gives the consumption for "Active RF" as 340mA and 110mA for a "CPU at full-load". Combining all of these estimates together and we obtain: \(528mA+20mA+340mA+120mA=998mA\). This was our inital conservative estimate for system current draw and if we had somehow miscalculated we could have lowered the LED brightness further. 
+    </p>
+  </div>
+
+  <!-- Image and caption container -->
+  <div style="flex: 0 0 300px; text-align: center;">
+    <img src="assets/images/toggle.jpg" alt="THE toggle" style="max-width: 80%; height: auto; border: 1px solid #ccc; padding: 5px;" />
+    <p style="font-size: 12px; font-style: italic; margin-top: 5px;">Fig. IX: The nice E-Switch toggle to handle 1A</p>
+  </div>
+</div>
+
+<div style="margin-left: 20px; text-align: left;">
+  <p>
+    We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity we eventually landed on a 3.7V lithium-ion battery with 850mAh and an dimensions 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7 down to 3.3 to power everything on the board the TLV1117LV33 (which can provide up to that peak 1A). It was suprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider swtiches are usually under 500mA, and most rockers were too big. Fortunately we found a toggle switch 200MSP1T2B4M2QE by E-Swtich that has a satisfying click.
+  </p>
+</div>
+
+<h2 style="margin-left: 20px; font-style: italic;">The PCB</h2>
+<!-- Grid container for 4 images and a single caption -->
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px; text-align: center;">
+  <!-- Image 1 -->
+  <div>
+    <img src="image1.jpg" alt="Image 1" style="width: 100%; height: auto; border: 1px solid #ccc;" />
+  </div>
+  <!-- Image 2 -->
+  <div>
+    <img src="image2.jpg" alt="Image 2" style="width: 100%; height: auto; border: 1px solid #ccc;" />
+  </div>
+  <!-- Image 3 -->
+  <div>
+    <img src="image3.jpg" alt="Image 3" style="width: 100%; height: auto; border: 1px solid #ccc;" />
+  </div>
+  <!-- Image 4 -->
+  <div>
+    <img src="image4.jpg" alt="Image 4" style="width: 100%; height: auto; border: 1px solid #ccc;" />
+  </div>
+</div>
+
+<!-- Caption -->
+<p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 5px;">
+  Figure: A collection of images representing various aspects of the project.
 </p>
 </p></div>
 
