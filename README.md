@@ -2,6 +2,9 @@
 title: FlexGlO Initial Setup
 description: See my new project!
 ---
+<!-- bundle exec jekyll serve // Will make server for testing -->
+<!-- http://localhost:4000 // Server location in browser -->
+
 <head>
   <!-- KaTeX CSS for styling -->
   <script type="text/javascript" async
@@ -207,5 +210,11 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     It's also worth noting everything about the conditioning pipeline is parameterized. We experimented with different DMA buffer sizes and the subsequent median filter window lengths. Again from testing we had to strike a balance: if the filter window is too long we flatten away brief moments of muscular exertion and its difficult to max out the LED bar; if we make it too short we don't smooth out the divots from rectification and the LEDs look very flickery and faint. Also if you make the buffer too big we produce a median at a rate below the Nyquist and allias effects take hold. In the end we selected a window of size 8 at 8kHz DMA. Before switching to DMA we had actually used a moving average filter but with the DMA setup we are collecting data in bunches of full buffers so the median filter (which was more robust against occasional noisy outliers) was a better choice for a similar computational cost.
 
     Finally, the Arduino serial plotter was a particularly useful tool for debugging all of this ADC code. We could visually inspect how the signals are sampling and rectifying and averaging to make judgments about the qaulity of our signal chain. Although at high sampling frequencies the <span style="font-family: Consolas, monospace;">Serial.print(...)</span> would lag or crash it was a heavily leveraged asset.
+    </p>
+  </div>
+      <div style="text-align: center; margin-top: 30px;">
+    <img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 100%; height: auto; border-radius: 8px;">
+    <p style="font-style: italic; margin-top: 8px; text-align: center;">
+      Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
     </p>
   </div>
