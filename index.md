@@ -57,7 +57,7 @@ description: See my new project!
   <!-- GIF Section -->
   <div style="flex: 1; text-align: center;">
     <img src="assets/gifs/gif_ex.gif" alt="FlexGlO demo GIF" style="max-width: 100%; height: auto; border-radius: 8px;">
-    <p style="font-style: italic; margin-top: 8px;">
+    <p style="font-style: italic; margin-top: 8px; font-size: 12px;">
     Fig. I: <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> in Action.
     </p>
   </div>
@@ -101,7 +101,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   </div>
 </div>
 
-<p style="text-align: center; font-style: italic; margin-top: 10px;">
+<p style="text-align: center; font-style: italic; margin-top: 10px;font-size: 12px;">
   Fig. II: <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> Muscle Shirt in Action.
 </p>
 <div id="implementation-section" style="text-align: left; margin-top: 40px; margin-bottom: 20px;">
@@ -147,8 +147,8 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   </div>
     <div style="text-align: center; margin-top: 30px;">
     <img src="assets/images/EMG_Filter.png" alt="Big Image" style="max-width: 100%; height: auto; border-radius: 8px;">
-    <p style="font-style: italic; margin-top: 8px; text-align: center;">
-      Fig. V: The EMG filter schematic.
+    <p style="font-style: italic; margin-top: 8px; text-align: center; font-size: 12px;">
+      Fig. III: The EMG filter schematic.
     </p>
   </div>
     
@@ -170,7 +170,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   
 
 <div>
-  <p style="font-style: italic; margin-top: 8px; text-align: center; max-width: 100%; word-wrap: break-word;">
+  <p style="font-size: 12px; font-style: italic; margin-top: 8px; text-align: center; max-width: 100%; word-wrap: break-word;">
     Fig. IV: [Right] TINA Simulator Oscilloscope showing the response of the full EMG filter at different frequencies.<br>[Bottom] Bode Plot of showing filter magnitude and phase.
   </p>
   </div>
@@ -197,8 +197,8 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     <img src="assets/gifs/analog_EKG_test.gif" alt="EKG Test" style="max-width: 100%; height: auto;">
   </div>
 </div>
-<p style="text-align: center; font-style: italic; margin-top: 10px;">
-  Fig. VI: [Left] EMG analog test with LED output. [Center] EMG I-Amp and Filter Breadboard. [Right] EKG analog test with LED output.
+<p style="text-align: center; font-style: italic; margin-top: 10px; font-size: 12px;">
+  Fig. V: [Left] EMG analog test with LED output. [Center] EMG I-Amp and Filter Breadboard. [Right] EKG analog test with LED output.
 </p>
 
 <h2 style="margin-left: 20px; font-style: italic;">Digital Sampling and Conditioning</h2>
@@ -207,7 +207,7 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   <!-- Left side: Image and caption -->
   <div style="flex: 1; text-align: center;">
     <img src="assets/images/digi_block_diag.png" alt="ADC Block Diagram" style="max-width: 100%; height: auto; border-radius: 8px;">
-    <p style="font-style: italic; margin-top: 8px;">Fig. X: Block diagram of muscle signal sampling and conditioning.</p>
+    <p style="font-style: italic; margin-top: 8px;font-size: 12px;">Fig. VI: Block diagram of muscle signal sampling and conditioning.</p>
   </div>
 
   <!-- Right side: Text content -->
@@ -230,8 +230,8 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   </div>
   <div style="text-align: center; margin-top: 30px;">
 <img src="assets/images/rectified_test.png" alt="Rectified Arduino" style="max-width: 80%; height: auto; border-radius: 8px;">
-<p style="font-style: italic; margin-top: 8px; text-align: center;">
-Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
+<p style="font-style: italic; margin-top: 8px; text-align: center;font-size: 12px;">
+Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
@@ -275,7 +275,7 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
   </div>
 </div>
 
-<p style="text-align: center; font-style: italic; margin-top: 10px;">
+<p style="text-align: center; font-style: italic; margin-top: 10px; font-size: 12px;">
   Fig. VIII: [Left] PCB outputting random voltages from thumb. [Center] Development breadboard showing smooth level transition with potentiometer. [Right] Startup and wait animations.
 </p>
 
@@ -313,10 +313,19 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </div>
 
 <h2 style="margin-left: 20px; font-style: italic;">The PCB</h2>
-
 <div style="margin-left: 20px; text-align: left;">
   <p>
-    The PCB(printed circuit board) was created in KiCAD and the schematic is based on the development breadboard we built with through-hole parts. We chose a 4 layer design so we had easy access to power and ground planes with vias. The board has a diameter of 60mm athough our edge cut does have a 1mm margin so we could potentially bring this design to 58mm. Through the entire PCB design process we tried to keep things as tight as possible to create sensor nodes that are actually wearable and do not incumber fitness movments while the system is in use. Initially we wanted the LED strips to encircle the "hockey puck" housing. There are two LED strips per node each of length 70 mm, and with a diameter of 60mm that means we have a circumference of \( 2\pi \left(\frac{60mm}{2}\right)=188.49mm \). The BLE antenna has a no-go zone that blocks the top flat portion of the board leaving us only about 140mm remaining for both the 2.5mm AUX jacks and the LEDs. Later on, during the design of the shirt we realized we could make the LEDs removeable from the housing and veclro them to the shirt. This second setup would allow us to shrink the board further. We also considered a double-sided board flipping all the amps to the backside, but the assembly cost ended up prohibitively high. The boards also include eleven probe locations we used to confirm proper analog performance of the board that could preseumably be sliced away to further shrink board area. 
+    The PCB (printed circuit board) was created in KiCAD, and the schematic is based on the development breadboard we built with through-hole parts. 
+    We chose a 4-layer design so we had easy access to power and ground planes with vias. The board has a diameter of 60mm, although our edge cut 
+    does have a 1mm margin, so we could potentially bring this design to 58mm. Through the entire PCB design process, we tried to keep things as 
+    tight as possible to create sensor nodes that are actually wearable and do not encumber fitness movements while the system is in use. Initially, 
+    we wanted the LED strips to encircle the "hockey puck" housing. There are two LED strips per node, each of length 70 mm, and with a diameter 
+    of 60mm, that means we have a circumference of \( 2\pi \left(\frac{60mm}{2}\right)=188.49mm \). The BLE antenna has a no-go zone that blocks 
+    the top flat portion of the board, leaving us only about 140mm remaining for both the 2.5mm AUX jacks and the LEDs. Later on, during the design 
+    of the shirt, we realized we could make the LEDs removable from the housing and Velcro them to the shirt. This second setup would allow us to 
+    shrink the board further. We also considered a double-sided board, flipping all the amps to the backside, but the assembly cost ended up 
+    prohibitively high. The boards also include eleven probe locations we used to confirm proper analog performance of the board that could 
+    presumably be sliced away to further shrink board area.
   </p>
 </div>
 
@@ -336,15 +345,29 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </div>
 
 <p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 5px;">
-  Fig. X: [TOP LEFT CLOCKWISE] The four layers of the <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span> PCB.
+  Fig. IX: [TOP LEFT CLOCKWISE] The four layers of the <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span> PCB.
 </p>
 
 <div style="margin-left: 20px; text-align: left;">
   <p>
-    All of the ICs on the board are installed with the default decoupling and stabilizing capacitors. To keep the design compact all of the passive components were selected to be in the 0402 package with the exception of a few 1206 tantalum capacitors. We orded the PCB to be partially assembled from JLPCB. This meant altering some of the BOM (bill of materials) to include parts within JLPCB's basic library offering to keep assembly and production costs low. Ordering partially assembled from JLPCB was a unique challenge becuase occasionally (for example for the AD623) a part would be significantly cheaper [we assume because JLPCB buys at volume and has a fraction availalbe as surplus for hobbiests], but we would have to pay a $3.00 "reel-swap" cost because it was on their "extended parts list". For the filters, often times a slightly more common resistor value might be on the basic list and we ran simulations on resistor and capacitor alterations to assure the PCB kept to the perfomance of the breadboarded design. As another benefit of partial assembly the ESP32-S3 itself has an under-module ground spot that would have required a hotplate setup to assemble ourselves so we were fortunate to have JLPCB carry that part in stock. The power switch, electrode TRRS jacks, and the TI filter amplifiers were not available on JLPCB and we had to solder them outselves. The only downside to the partial assembly was the gain resistors. Recall from the analog secion that selecting the correct gain was finicky on the breadboard and removing and resoldring a miniscule 0402 resistor on the edge of a board would have been a pain had we chosen poorly.
+    All of the ICs on the board are installed with the default decoupling and stabilizing capacitors. To keep the design compact, all of the passive 
+    components were selected to be in the 0402 package, with the exception of a few 1206 tantalum capacitors. We ordered the PCB to be partially 
+    assembled from JLPCB. This meant altering some of the BOM (bill of materials) to include parts within JLPCB's basic library offering to keep 
+    assembly and production costs low. Ordering partially assembled from JLPCB was a unique challenge because occasionally (for example, for the 
+    AD623), a part would be significantly cheaper [we assume because JLPCB buys at volume and has a fraction available as surplus for hobbyists], 
+    but we would have to pay a $3.00 "reel-swap" cost because it was on their "extended parts list." For the filters, often a slightly more common 
+    resistor value might be on the basic list, and we ran simulations on resistor and capacitor alterations to assure the PCB kept to the performance 
+    of the breadboarded design. As another benefit of partial assembly, the ESP32-S3 itself has an under-module ground spot that would have required a 
+    hotplate setup to assemble ourselves, so we were fortunate to have JLPCB carry that part in stock. The power switch, electrode TRRS jacks, and the 
+    TI filter amplifiers were not available on JLPCB, and we had to solder them ourselves. The only downside to the partial assembly was the gain 
+    resistors. Recall from the analog section that selecting the correct gain was finicky on the breadboard, and removing and re-soldering a minuscule 
+    0402 resistor on the edge of a board would have been a pain had we chosen poorly.
     <br><br>
-    Routing was particularly difficult for the notch and bandpasss filters where there are numerous looping interconnects between the SOIC-8 pins of the TI amplifiers. At the point of PCB design we were still relatively unsure of the current requirments for our system so we select 0.75mm traces for 3.7V off-battery, 0.5mm traces for the LED strip power and the ESP, and 0.25mm traces for the remaining nest. There are a few spidering traces within the power and ground planes that are voltage referecnes for the filter and the instrumentation amplifiers respectively. There is a circular cut-out in the lower right side of the board to route power cables and the LED wires through the housing.
-    <br><br>
+    Routing was particularly difficult for the notch and bandpass filters, where there are numerous looping interconnects between the SOIC-8 pins of 
+    the TI amplifiers. At the point of PCB design, we were still relatively unsure of the current requirements for our system, so we selected 0.75mm 
+    traces for 3.7V off-battery, 0.5mm traces for the LED strip power and the ESP, and 0.25mm traces for the remaining nest. There are a few spidering 
+    traces within the power and ground planes that are voltage references for the filter and the instrumentation amplifiers, respectively. There is a 
+    circular cut-out in the lower right side of the board to route power cables and the LED wires through the housing.
   </p>
 </div>
 
@@ -360,6 +383,34 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
   </div>
 </div>
 
-<p style="text-align: center; font-style: italic; margin-top: 10px;">
-  Fig. II: [Left] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB top-view 3D rendering. [Center] Busy KiCad PCB design overall view. [Right] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB side-view 3D rendering.
+<p style="text-align: center; font-style: italic; font-size: 12px; margin-top: 10px;">
+  Fig. X: [Left] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB top-view 3D rendering. [Center] Busy KiCad PCB design overall view. [Right] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB side-view 3D rendering.
+</p>
+
+<div style="margin-left: 20px; text-align: left;">
+  <p>
+    After about ten days, we received our partially assembled PCB. There was only one mistake involving the power switch, which was discussed in the 
+    Power section above. At first, we tried to surface-mount everything with a heat gun, but the plastic connectors proved to be particularly frail 
+    up against the heat. The rest was done delicately with the iron. The TRRS jacks are very small and have only partial through-hole nubs for 
+    mechanical support, so we had to re-solder those frequently over the course of debugging. The worst assembly issue involved the filter amps, 
+    which were extremely sensitive to poor solder joints or even spare flux. We would assemble the whole system into its housing and find that the 
+    slight torsion on the board had lifted the pins of the amp slightly, causing erratic behavior on the LEDs. We discovered this issue after 
+    significant struggle when we accidentally pressed different corners of the Quad-Amps and found the system would miraculously work as intended. 
+  </p>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
+  <div style="flex: 1; text-align: center; padding-right: 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/rails.jpg" alt="Rails" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/assembled.jpg" alt="Completed" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding-left: 10px;">
+    <img src="assets/images/solder.jpg" alt="Soldered Jack" style="max-width: 100%; height: auto;">
+  </div>
+</div>
+
+<p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 10px;">
+  Fig. XI: [Left] PCB from JLPCB with rails. [Center] Fully assembled <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB. [Right] Soldering the bottom TRRS jack for Node 0.
 </p>
