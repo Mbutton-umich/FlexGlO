@@ -2,6 +2,9 @@
 title: FlexGlO Initial Setup
 description: See my new project!
 ---
+<!--bundle exec jekyll serve //Will run this locally-->
+<!--http://localhost:4000 //Locally as in here-->
+
 <head>
   <!-- KaTeX CSS for styling -->
   <script type="text/javascript" async
@@ -9,6 +12,10 @@ description: See my new project!
   </script>
 </head>
 
+<script>
+    var audio = new Audio('https://github.com/user/project/blob/main/audio/sound.mp3?raw=true');
+    audio.play();
+</script>
 <div style="background-color: #f8f9fa; padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
   <p style="margin: 0; font-size: 14px; color: grey; font-style: italic;">
     Co-Designers:
@@ -19,6 +26,22 @@ description: See my new project!
     Youssouf (<a href="https://github.com/eve" style="color: blue; text-decoration: none;">GitHub</a>)
   </p>
 </div>
+<body>
+    <h1>Welcome to My GitHub Pages!</h1>
+
+    <!-- Audio Element -->
+    <audio id="welcomeAudio" src="assets/audio/audio.mp3"></audio>
+
+    <script>
+        // Function to play the audio once
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('welcomeAudio');
+            audio.play().catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+        });
+    </script>
+</body>
 
 <div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
   <p style="font-size: 16px; font-weight: bold; color: black;">
@@ -291,31 +314,59 @@ Fig. V: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 <div style="margin-left: 20px; text-align: left;">
   <p>
     We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity we eventually landed on a 3.7V lithium-ion battery with 850mAh and an dimensions 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7 down to 3.3 to power everything on the board the TLV1117LV33 (which can provide up to that peak 1A). It was suprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider swtiches are usually under 500mA, and most rockers were too big. Fortunately we found a toggle switch 200MSP1T2B4M2QE by E-Swtich that has a satisfying click.
+    <br><br>
+    After about 10 days the PCB arrived. There was one mistake involving the power switch, where the off pin was tied into the ground net so the battery was shorted when turned off. Fortunately we powered everything with a lab supply unit and corrected this issue by clipping the third pin of the switch. We also discovered the actual current draw of the system was much lower than expected at &lt;250mA. This was a great result for our battery life which we eventually tested to exceed 3 hours for each sensor node. 
   </p>
 </div>
 
 <h2 style="margin-left: 20px; font-style: italic;">The PCB</h2>
-<!-- Grid container for 4 images and a single caption -->
+
+<div style="margin-left: 20px; text-align: left;">
+  <p>
+    The PCB(printed circuit board) was created in KiCAD and the schematic is based on the development breadboard we built with through-hole parts. We chose a 4 layer design so we had easy access to power and ground planes with vias. The board has a diameter of 60mm athough our edge cut does have a 1mm margin so we could potentially bring this design to 58mm. Through the entire PCB design process we tried to keep things as tight as possible to create sensor nodes that are actually wearable and do not incumber fitness movments while the system is in use. Initially we wanted the LED strips to encircle the "hockey puck" housing. There are two LED strips per node each of length 70 mm, and with a diameter of 60mm that means we have a circumference of \( 2\pi \left(\frac{60mm}{2}\right)=188.49mm \). The BLE antenna has a no-go zone that blocks the top flat portion of the board leaving us only about 140mm remaining for both the 2.5mm AUX jacks and the LEDs. Later on, during the design of the shirt we realized we could make the LEDs removeable from the housing and veclro them to the shirt. This second setup would allow us to shrink the board further. We also considered a double-sided board flipping all the amps to the backside, but the assembly cost ended up prohibitively high. The boards also include eleven probe locations we used to confirm proper analog performance of the board that could preseumably be sliced away to further shrink board area. 
+  </p>
+</div>
+
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px; text-align: center;">
-  <!-- Image 1 -->
   <div>
-    <img src="image1.jpg" alt="Image 1" style="width: 100%; height: auto; border: 1px solid #ccc;">
+    <img src="assets/images/FlexGlO-F_Cu-cropped.svg" alt="Front" style="width: 100%; height: auto; border: 1px solid #ccc;">
   </div>
-  <!-- Image 2 -->
   <div>
-    <img src="image2.jpg" alt="Image 2" style="width: 100%; height: auto; border: 1px solid #ccc;">
+    <img src="assets/images/FlexGlO-In1_Cu-cropped.svg" alt="In 1" style="width: 100%; height: auto; border: 1px solid #ccc;">
   </div>
-  <!-- Image 3 -->
   <div>
-    <img src="image3.jpg" alt="Image 3" style="width: 100%; height: auto; border: 1px solid #ccc;">
+    <img src="assets/images/FlexGlO-B_Cu-cropped.svg" alt="Image 3" style="width: 100%; height: auto; border: 1px solid #ccc;">
   </div>
-  <!-- Image 4 -->
   <div>
-    <img src="image4.jpg" alt="Image 4" style="width: 100%; height: auto; border: 1px solid #ccc;">
+    <img src="assets/images/FlexGlO-In2_Cu-cropped.svg" alt="In 2" style="width: 100%; height: auto; border: 1px solid #ccc;">
   </div>
 </div>
 
-<!-- Caption -->
 <p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 5px;">
-  Figure: A collection of images representing various aspects of the project.
+  Fig. X: [TOP LEFT CLOCKWISE] The four layers of the <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span> PCB.
+</p>
+
+<div style="margin-left: 20px; text-align: left;">
+  <p>
+    All of the ICs on the board are installed with the default decoupling and stabilizing capacitors. To keep the design compact all of the passive components were selected to be in the 0402 package with the exception of a few 1206 tantalum capacitors. We orded the PCB to be partially assembled from JLPCB. This meant altering some of the BOM (bill of materials) to include parts within JLPCB's basic library offering to keep assembly and production costs low. Ordering partially assembled from JLPCB was a unique challenge becuase occasionally (for example for the AD623) a part would be significantly cheaper [we assume because JLPCB buys at volume and has a fraction availalbe as surplus for hobbiests], but we would have to pay a $3.00 "reel-swap" cost because it was on their "extended parts list". For the filters, often times a slightly more common resistor value might be on the basic list and we ran simulations on resistor and capacitor alterations to assure the PCB kept to the perfomance of the breadboarded design. As another benefit of partial assembly the ESP32-S3 itself has an under-module ground spot that would have required a hotplate setup to assemble ourselves so we were fortunate to have JLPCB carry that part in stock. The power switch, electrode TRRS jacks, and the TI filter amplifiers were not available on JLPCB and we had to solder them outselves. The only downside to the partial assembly was the gain resistors. Recall from the analog secion that selecting the correct gain was finicky on the breadboard and removing and resoldring a miniscule 0402 resistor on the edge of a board would have been a pain had we chosen poorly.
+    <br><br>
+    Routing was particularly difficult for the notch and bandpasss filters where there are numerous looping interconnects between the SOIC-8 pins of the TI amplifiers. At the point of PCB design we were still relatively unsure of the current requirments for our system so we select 0.75mm traces for 3.7V off-battery, 0.5mm traces for the LED strip power and the ESP, and 0.25mm traces for the remaining nest. There are a few spidering traces within the power and ground planes that are voltage referecnes for the filter and the instrumentation amplifiers respectively. There is a circular cut-out in the lower right side of the board to route power cables and the LED wires through the housing.
+    <br><br>
+  </p>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 20px; margin-bottom: 20px;">
+  <div style="flex: 1; text-align: center; padding-right: 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/fancy_top.png" alt="Rendered Top" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
+    <img src="assets/images/PCB_design.png" alt="Raw Design" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; text-align: center; padding-left: 10px;">
+    <img src="assets/images/fancy_side.png" alt="Rendered Side" style="max-width: 100%; height: auto;">
+  </div>
+</div>
+
+<p style="text-align: center; font-style: italic; margin-top: 10px;">
+  Fig. II: [Left] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB top-view 3D rendering. [Center] Busy KiCad PCB design overall view. [Right] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB side-view 3D rendering.
 </p>
