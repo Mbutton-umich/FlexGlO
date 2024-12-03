@@ -54,8 +54,8 @@
     Matt (<a href="https://github.com/Mbutton-umich" style="color: blue; text-decoration: none;">Mbutton-umich</a>),
     Ernesto (<a href="https://github.com/ernestogomezs" style="color: blue; text-decoration: none;">ernestogomezs</a>),
     Pablo (<a href="https://github.com/pgaracu" style="color: blue; text-decoration: none;">pgaracu</a>),
-    Sammy (<a href="https://github.com/dana" style="color: blue; text-decoration: none;">GitHub</a>), and
-    Youssouf (<a href="https://github.com/eve" style="color: blue; text-decoration: none;">GitHub</a>)
+    Sammy (<a href="https://github.com/saadsammy" style="color: blue; text-decoration: none;">saadsammy</a>), and
+    Youssouf (<a href="https://github.com/ysiditech" style="color: blue; text-decoration: none;">ysiditech</a>)
   </p>
 </div>
 
@@ -72,7 +72,12 @@
         <li><a href="#fiber-optics-section" style="text-decoration: none; color: blue;">The LEDs</a></li>
         <li><a href="#power-considerations-section" style="text-decoration: none; color: blue;">Power Considerations</a></li>
         <li><a href="#pcb-section" style="text-decoration: none; color: blue;">The PCB</a></li>
+        <li><a href="#ble-section" style="text-decoration: none; color: blue;">Connectivity with BLE</a></li>
+        <li><a href="#app-section" style="text-decoration: none; color: blue;">The Flutter App</a></li>
+        <li><a href="#house-section" style="text-decoration: none; color: blue;">3D Printed Shell</a></li>
+        <li><a href="#textile-section" style="text-decoration: none; color: blue;">Shirt Construction</a></li>
       </ul>
+      <li><a href="#leftovers-section" style="text-decoration: none; color: blue; font-weight: bold;">Contact and Lingering Questions</a></li>
       <li><a href="#thankyou-section" style="text-decoration: none; color: blue; font-weight: bold;">Special Thanks</a></li>
     </ul>
   </div>
@@ -291,7 +296,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
-<div style="text-align: left; margin-left: 20px;">
+<div id="fiber-optics-section" style="text-align: left; margin-left: 20px;">
   <h2 style=" font-style: italic;">Fiber Optics...Muscle Fiber Optics</h2>
   <p>
     We are fully indebted to the FastLED library, which allows us to update the LED bars and the LED circle for the heart pulse. There were basically no problems with the library, and the interfaces are very clean. The only hiccup involved multiple tasks contending for control of RMT assets. In prior projects, we had bit-banged the data lines for these strips, but we were fortunate that FastLED does this and does it efficiently. For the bars, we simply range down the median coming off the ADC and ignite that number of LEDs. For the EKG circle, the actual heart pulse was too quick and looked very faint, so we used some software tricks to give a "stickiness" to the heartbeat to make it more prominent. FastLED uses the RMT (Remote Control Transceiver) peripherals to bit-bang the precise PWM patterns and encode colors to the strips. The ESP32-S3 has 4 transmission RMT channels, so the three strips compute the colors and levels serially and then update in parallel.
@@ -370,8 +375,9 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
   </p>
 </div>
 
-<h2 style="margin-left: 20px; font-style: italic;">The PCB</h2>
-<div style="margin-left: 20px; text-align: left;">
+
+<div id="pcb-section" style="margin-left: 20px; text-align: left;">
+  <h2 style="font-style: italic;">The PCB</h2>
   <p>
     The PCB (printed circuit board) was created in KiCAD, and the schematic is based on the development breadboard we built with through-hole parts. 
     We chose a 4-layer design so we had easy access to power and ground planes with vias. The board has a diameter of 60mm, although our edge cut 
@@ -472,6 +478,107 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 <p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 10px;">
   Fig. XI: [Left] PCB from JLPCB with rails. [Center] Fully assembled <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB. [Right] Soldering the bottom TRRS jack for Node 0.
 </p>
+
+<div id="ble-section" style="display: block; padding-bottom: 20px;">
+  <h2 style="margin-left: 20px; font-style: italic;">Connectivity with BLE</h2>
+  <!-- Left side: First paragraph -->
+  <p style="padding-left: 20px;">
+    Initially we actually planned to use the ESP-NOW protocol and connect through a "central node" prior to linking with a mobile phone. Our group had limited experience with App development and it seemed easier to use an additional ESP32 as an information seive. But we realized that most phones could easiliy handle muple BLE connections easily. 
+    <br /><br />
+    Library used for BLE. How the characteristics are setup. How data is passed. Ping-pong buffer mentioned
+    <br /><br />
+    <b>More details coming!</b> Pictures of initial ESPC3 setup and test
+    A screeenshot or gif of NRF app in action for debugging
+  </p>
+</div>
+
+<div id="app-section" style="display: block; padding-bottom: 20px;">
+  <h2 style="margin-left: 20px; font-style: italic;">Flexing a Fitness App</h2>
+  <!-- Left side: First paragraph -->
+  <p style="padding-left: 20px;">
+    Why we landed on Flutter. The general architecture of it, challenges. What was that bug that we had to bypass etc
+    <br /><br />
+    All of the in app screen shots. a gif of us changing colors
+    <br /><br />
+    <b>More details coming!</b> Pictures of initial ESPC3 setup and test
+  </p>
+</div>
+
+<div id="house-section" style="display: block; padding-bottom: 20px;">
+  <h2 style="margin-left: 20px; font-style: italic;">The 3D Printed Shell</h2>
+  <!-- Left side: First paragraph -->
+  <p style="padding-left: 20px;">
+    
+    What software used Solidworks? Initial considerations about size from 64mm to 60mm. Discussion about LEDs inside versus outside. THe material selected. Where they were printed the approximate time to print them. Details about adding the charging port, the text and symbols. THe snap of the lid, mention the mounting screw
+    <br /><br />
+    Nice highdef renderings of the hocley puck then pictures of the thing empty and a few close ups of the housing 
+    <br /><br />
+    <b>More details coming!</b>
+  </p>
+</div>
+
+<div id="textile-section" style="display: block; padding-bottom: 20px;">
+  <h2 style="margin-left: 20px; font-style: italic;">High-Tech Tailor Fit</h2>
+  <!-- Left side: First paragraph -->
+  <p style="padding-left: 20px;">
+    Why we chose the neoprene shirt. Different considerations four mounting the nodes. Talk about bad sizing for the shirt and the delays there. 
+    <br /><br />
+    Gif of us showing the shirt stretches, close up of the stitching, some gif of the glue process. See the shirt Design document on Drive. Shirt with all wires out exposed. Picture of full ectrode on body 
+    <br /><br />
+    <b>More details coming!</b>
+  </p>
+</div>
+
+<div id="leftovers-section" style="text-align: left; margin-top: 40px; margin-bottom: 20px;">
+  <h1>Contact and Lingering Queries</h1>
+  <p>
+    Thank you for your interest in <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span>. If you notice anything wrong with our design or have any questions, feel free to reach out to     <a href="mailto:mbutton@umich.edu" style="color: blue; text-decoration: none;">mbutton@umich.edu</a>. We have listed a few prevailing issues we are aware of below:
+    <ul>
+      <li>
+        <strong>Why do you not have ESD (electrostatic discharge) protection for any of your electrodes? Isn't it unsafe?</strong>
+        <br />
+        <em>The LiPo itself is only 3.7V and steps through an LDO to 3.3V, and its standard discharge is 0.2C (&asymp;172mA). Through repeated tests, the system maxes out at 250mA. Even for super wet, sweaty skin, any kind of reverse current would not push anything close to 250mA. The ground electrodes are also connected through 100k&Omega; resistor dividers. We realize that for this to be a medical-grade system, ESD protection would be required.</em>
+      </li>
+      <li>
+        <strong>Why is there a ringing or oscillation in the filter amps around 165kHz?</strong>
+        <br />
+        <em>We have no idea. But it occurs in about half of the PCBs for the EMG circuits and causes fluctuations in the LED display as much as 3 lights high. If you are analog-inclined, we think it might have to do with the Notch filters and how we implemented them in single-supply mode.</em>
+      </li>
+      <li>
+        <strong>Why don't you calibrate the ESP32's ADC to get more accurate voltage readouts?</strong>
+        <br />
+        <em>The voltage coming off the skin could change based on factors like body fat, sweat, or muscle volume. The LEDs have programmable gain so that the system will ignite for any user. In our use case, we were more concerned with proportionally displaying EMG voltages rather than measuring them with absolute accuracy.</em>
+      </li>
+      <li>
+        <strong>The placement of the "bone ground" reference electrode is suspect.</strong>
+        <br />
+        <em>There is a single ground electrode shared by up to three circuits in our system. On the breadboard, we tried inserting the ground electrode at true ground and inside the divider circuit. We also initially tried using the bone reference solely for the instrumentation amp, but the voltage didn’t pass well into the filters. We decided to make the reference electrode true ground because it produced the cleanest results. Please correct us if the schematic is wrong.</em>
+      </li>
+      <li>
+        <strong>Why did you consolidate the wait and LED tasks?</strong>
+        <br />
+        <em>Initially, we had two processes call <span style="font-family: Consolas, monospace;">FastLED.show()</span>, but there was always contention or some deadlock caused by a trapped mutex involving the RMT peripherals. Sometimes the system would run for an hour without freezing; other times, it would freeze after five minutes. Rather than delving into the library code, we consolidated the wait functionality and called <span style="font-family: Consolas, monospace;">FastLED.show()</span> only once.</em>
+      </li>
+    </ul>
+  </p>
+</div>
+
+
+<div id="thankyou-section" style="text-align: left; margin-top: 40px; margin-bottom: 20px;">
+ <h1>GlO-ing Gratitude</h1>
+<p>
+  We fully appreciate the facilities that the University of Michigan (Ann Arbor), provided to enable this project. This includes the EECS 473 Lab and the MESH (Michigan Embedded Systems Hub) Lab on North Campus, as well as the wide array of available equipment, ranging from oscilloscopes and wave generators to multimeters, soldering irons, and power supplies. We are also grateful for their extensive inventory of passive components, consumables (bare wire, flux, solder paste), and modules, which significantly eased the process of prototyping.
+  <br /><br />
+  We were also well supported throughout the design process by Professor Mark Brehob and the EECS 473 lab staff, Matt Smith and James Carl. They provided invaluable counsel on significant design decisions and took the time to answer any questions, no matter how simple or redundant, on PCB design, assembly, software, and more. Their guidance was further complemented by the insights of the Fall '24 GSIs, who themselves had valuable experience from taking EECS 473 in prior semesters. Combined the staff strikes a great balance of 
+  <br /><br />
+  Finally, we extend our thanks to Optiver, who generously provided funding for this year’s projects, contributing $1,000.00 per group. We also appreciated their guest lecture on the engineering challenges they face as a market maker in the realm of low-latency trading.
+</p>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 256px; margin-top: 20px;">
+  <img src="assets/images/stacked.svg" alt="Logo 1" style="width: 200px; height: auto;" />
+  <img src="assets/images/Optiver_Logo.svg" alt="Logo 2" style="width: 200px; height: auto;" />
+</div>
 </p></div>
 
 
