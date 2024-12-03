@@ -13,7 +13,7 @@ description: See my new project!
 </head>
 
 <script>
-    var audio = new Audio('https://github.com/user/project/blob/main/audio/sound.mp3?raw=true');
+    var audio = new Audio('https://github.com/Mbutton-umich/FlexGlO/blob/main/assets/audio/arnold_endorse.mp3?raw=true');
     audio.play();
 </script>
 <div style="background-color: #f8f9fa; padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">
@@ -45,7 +45,7 @@ description: See my new project!
 
 <div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
   <p style="font-size: 16px; font-weight: bold; color: black;">
-    {<a href="https://github.com/example-code" style="color: blue; text-decoration: none;">THE CODE</a> |
+    {<a href="https://github.com/Mbutton-umich/FlexGlO" style="color: blue; text-decoration: none;">THE CODE</a> |
     <a href="#implementation-section" style="color: blue; text-decoration: none;">SKIP TO IMPLEMENTATION</a> |
     <a href="#special-thanks-section" style="color: blue; text-decoration: none;">SPECIAL THANKS</a>}
   </p>
