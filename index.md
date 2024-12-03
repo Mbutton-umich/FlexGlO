@@ -23,15 +23,33 @@ description: See my new project!
   </p>
 </div>
 
-<div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
-  <p style="font-size: 16px; font-weight: bold; color: black;">
-    {<a href="https://github.com/Mbutton-umich/FlexGlO" style="color: blue; text-decoration: none;">THE CODE</a> |
-    <a href="#implementation-section" style="color: blue; text-decoration: none;">SKIP TO IMPLEMENTATION</a> |
-    <a href="#special-thanks-section" style="color: blue; text-decoration: none;">SPECIAL THANKS</a>}
-  </p>
+<div style="display: flex; justify-content: center; margin: 20px;">
+  <div class="toc" style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; max-width: 300px; text-align: center;">
+    <h3 style="margin: 0; font-size: 16px; cursor: pointer;" onclick="toggleTOC()">Table of Contents</h3>
+    <ul id="toc-list" style="list-style: none; padding: 10px; display: none; text-align: left;">
+      <li><a href="https://github.com/Mbutton-umich/FlexGlO" style="text-decoration: none; color: blue; font-weight: bold;">The Code (Link to Git)</a></li>
+      <li><a href="#the-pitch-section" style="text-decoration: none; color: blue; font-weight: bold;">The Pitch</a></li>
+      <li><a href="#implementation-section" style="text-decoration: none; color: blue; font-weight: bold;">Implementation</a></li>
+      <ul style="padding-left: 20px; list-style: disc;">
+        <li><a href="#analog-acquisition-section" style="text-decoration: none; color: blue;">Analog Acquisition</a></li>
+        <li><a href="#digital-sampling-section" style="text-decoration: none; color: blue;">Digital Sampling</a></li>
+        <li><a href="#fiber-optics-section" style="text-decoration: none; color: blue;">The LEDs</a></li>
+        <li><a href="#power-considerations-section" style="text-decoration: none; color: blue;">Power Considerations</a></li>
+        <li><a href="#pcb-section" style="text-decoration: none; color: blue;">The PCB</a></li>
+      </ul>
+      <li><a href="#thankyou-section" style="text-decoration: none; color: blue; font-weight: bold;">Special Thanks</a></li>
+    </ul>
+  </div>
 </div>
 
-<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+<script>
+  function toggleTOC() {
+    const tocList = document.getElementById('toc-list');
+    tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
+<div id="the-pitch-section" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
   <!-- Text Section -->
   <div style="flex: 2;">
     <audio id="audio" src="assets/audio/arnold_endorse.mp3"></audio>
@@ -110,9 +128,10 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   <br><br>
   <p>Aquiring muscle signals for EMG and EKG is done using Analog Devices <strong style="color: blue;">AD623</strong> a moderately priced chip that works well for breadboarding because it still comes in a DIP package. The <strong style="color: blue;">single-supply analog filters</strong> all utilize <strong style="color: blue;">TLV246X</strong> chips from Texas Instruments (TI) which again come in DIP packages and are well supported by TI's simple SPICE simulator and filter design widget. We selected <strong style="color: blue;">ESP32-S3 WROOM 1</strong> as the platform for the project for several reasons: the module's integrated antenna, the dual core, and its support and ubiquity amongst hobbyists. All of the code was developed in <strong style="color: blue;">Arduino IDE</strong> in <strong style="color: blue;">embedded C</strong> utilizing <strong style="color: blue;">FreeRTOS</strong> and <strong style="color: blue;">hardware timers</strong> for strict scheduling. The system is powered with a generic 3.7V 850mAh Li-Po pouch and regulated with TI's <strong style="color: blue;">TLV1117LV33</strong> to 3.3V at 1A. The eventual PCBs were created in <strong style="color: blue;">KiCad</strong>. We use <strong style="color: blue;">multi-channel continuous reads over DMA (direct memory access)</strong> to sample up to three muscles at once at every node. That information is then aggregated and processed quickly to be displayed in <strong style="color: blue;">realtime</strong> with quick updates to <strong style="color: blue;">WS2813 LED strips</strong> using the <strong style="color: blue;">FastLED library</strong>. We also quickly send updates to a <strong style="color: blue;">Flutter</strong> mobile application from all five nodes across the upper body. This app allows users to view muscle activation across the whole upper body, or to zoom in and see a live oscilloscope-style view of any particular muscle. From the app, you can also change the LED colors or log data for later analysis. At the tail end of the project, we also tried to do some movement identification once data is collected at the app in <strong style="color: blue;">Dart</strong> using some binary matrix manipulations.
   
-  <h2 style="margin-left: 20px; font-style: italic;">Analog Acquisition</h2>
+ 
 
-  <div style="display: block; padding-bottom: 20px;">
+  <div id="analog-acquisition-section" style="display: block; padding-bottom: 20px;">
+    <h2 style="margin-left: 20px; font-style: italic;">Analog Acquisition</h2>
     <!-- Left side: First paragraph -->
     <p style="padding-left: 20px;">
       We use an Analog Devices instrumentation amplifier AD623 as the pre-Amp phase to extract muscle signals off of the surface of the skin. As you flex a given muscle neurons are firing a ripple of activation signals along the muscle fibers that propogate out to the surface of the skin. With a high impedance differential amplifier we can measure the differnce in voltage between two close points and quantify that activation energy. Under the shirt, users need to put roughly 30 Red Dot Electrodes that button nicely into our electrode snaps and feed into each node via 2.5 mm TRRS (AUX) jacks. It took a lot of testing to select the correct gain resistor for EMG and EKG. We initially used a potentiometer to dial in the correct gain for our purposes; unfortunately, we found the resistance on the breadboard to be pretty finicky and unstable. For the PCB, we landed on 300&Omega; for the EMG and 100&Omega; for the EKG circuit. These minscule muscle activation signals are in the range [50&mu;V, 30mV] for EMG and [500&mu;V, 5mV] for EKG. We needed strike a balance and select a gain that is large enough to bring these voltages into the full range of our ADC ([0, 3.3]V) but not so large that upon activation we get instant saturation. From the AD623 datasheet that places our selected gains at:
@@ -201,10 +220,10 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
   Fig. V: [Left] EMG analog test with LED output. [Center] EMG I-Amp and Filter Breadboard. [Right] EKG analog test with LED output.
 </p>
 
-<h2 style="margin-left: 20px; font-style: italic;">Digital Sampling and Conditioning</h2>
-
+<div id="digital-sampling-section" >
+  <h2 style="margin-left: 20px; font-style: italic;">Digital Sampling and Conditioning</h2>
+</div>
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-  <!-- Left side: Image and caption -->
   <div style="flex: 1; text-align: center;">
     <img src="assets/images/digi_block_diag.png" alt="ADC Block Diagram" style="max-width: 100%; height: auto; border-radius: 8px;">
     <p style="font-style: italic; margin-top: 8px;font-size: 12px;">Fig. VI: Block diagram of muscle signal sampling and conditioning.</p>
@@ -221,8 +240,8 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     </p>
   </div>
 </div>
-  <div>
-    <p style="padding-left: 20px;">
+  <div style = "padding-left: 20px;">
+    <p>
     It's also worth noting everything about the conditioning pipeline is parameterized. We experimented with different DMA buffer sizes and the subsequent median filter window lengths. Again from testing we had to strike a balance: if the filter window is too long we flatten away brief moments of muscular exertion and its difficult to max out the LED bar; if we make it too short we don't smooth out the divots from rectification and the LEDs look very flickery and faint. Also if you make the buffer too big we produce a median at a rate below the Nyquist and allias effects take hold. In the end we selected a window of size 8 at 8kHz DMA. Before switching to DMA we had actually used a moving average filter but with the DMA setup we are collecting data in bunches of full buffers so the median filter (which was more robust against occasional noisy outliers) was a better choice for a similar computational cost.
 
     Finally, the Arduino serial plotter was a particularly useful tool for debugging all of this ADC code. We could visually inspect how the signals are sampling and rectifying and averaging to make judgments about the qaulity of our signal chain. Although at high sampling frequencies the <span style="font-family: Consolas, monospace;">Serial.print(...)</span> would lag or crash it was a heavily leveraged asset.
@@ -235,15 +254,16 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </p>
 </div>
 
-<h2 style="margin-left: 20px; font-style: italic;">Fiber Optics...Muscle Fiber Optics</h2>
-
-<div style="text-align: left; margin-left: 20px;">
+<div  style="text-align: left; margin-left: 20px;">
+  <h2 style=" font-style: italic;">Fiber Optics...Muscle Fiber Optics</h2>
   <p>
     We are fully indebted to the FastLED library, which allows us to update the LED bars and the LED circle for the heart pulse. There were basically no problems with the library, and the interfaces are very clean. The only hiccup involved multiple tasks contending for control of RMT assets. In prior projects, we had bit-banged the data lines for these strips, but we were fortunate that FastLED does this and does it efficiently. For the bars, we simply range down the median coming off the ADC and ignite that number of LEDs. For the EKG circle, the actual heart pulse was too quick and looked very faint, so we used some software tricks to give a "stickiness" to the heartbeat to make it more prominent. FastLED uses the RMT (Remote Control Transceiver) peripherals to bit-bang the precise PWM patterns and encode colors to the strips. The ESP32-S3 has 4 transmission RMT channels, so the three strips compute the colors and levels serially and then update in parallel.
   </p>
+
   <p>
     We also made a nice "start-up pulse" animation (in maize and blue) and a "waiting to connect" animation. Although we developed these initially as flair for the system, they were actually incredibly useful. When debugging, the chip might crash or disconnect, and having those visual cues was a big help.
   </p>
+
   <p>
     For the final system on the PCB, we also measured the FPS (frames per second) for all the LEDs updating. We fall within [110, 150] FPS for regular operation. We selected WS2813 strips in particular for several reasons:
   </p>
@@ -279,10 +299,11 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
   Fig. VIII: [Left] PCB outputting random voltages from thumb. [Center] Development breadboard showing smooth level transition with potentiometer. [Right] Startup and wait animations.
 </p>
 
-<h2 style="margin-left: 20px; font-style: italic;">Power Considerations</h2>
+
 
 <!-- First paragraph outside the flex container -->
-<div style="margin-left: 20px; text-align: left;">
+<div id= "power-considerations-section" style="margin-left: 20px; text-align: left;">
+  <h2 style="font-style: italic;">Power Considerations</h2>
   <p>
     Because of how the analog, the code, and the BLE was developed concurrently it was somewhat difficult to ascertain the peak current draw of the full system until we received the PCB. First we did some napkin math:
   </p>
