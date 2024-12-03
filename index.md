@@ -45,6 +45,8 @@ description: See my new project!
         <a href="#" onclick="playAudio()" style="text-decoration: none; color: inherit;">
             <span style="color: blue; text-decoration:">What</span> is <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span>?
         </a>
+        <sub style="font-size: 40%; margin-left: 5px;"><i>...Make sure you click 'What'!</i></sub>
+
     </h1>      <script>
     var audio = new Audio('https://github.com/Mbutton-umich/FlexGlO/blob/main/assets/audio/arnold_endorse.mp3?raw=true');
     audio.play();
