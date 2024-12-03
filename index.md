@@ -55,7 +55,6 @@ description: See my new project!
 </script>
 
 <div id="the-pitch-section" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-  <!-- Text Section -->
   <div style="flex: 2;">
     <audio id="audio" src="assets/audio/arnold_endorse.mp3"></audio>
     <script>
