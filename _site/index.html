@@ -377,18 +377,19 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
   <!-- Image and caption container -->
   <div style="flex: 0 0 300px; text-align: center;">
     <img src="assets/images/battery.jpg" alt="Battery" style="max-width: 80%; height: auto; border: 1px solid #ccc; padding: 5px;" />
-    <p style="font-size: 12px; font-style: italic; margin-top: 5px;">Fig. X: The rechareable LiPo Pouch Integrated into the 3D printed housing</p>
+    <p style="font-size: 12px; font-style: italic; margin-top: 5px;">Fig. X: The rechargeable LiPo pouch integrated into the 3D-printed housing</p>
   </div>
 
   <!-- Text container -->
   <div style="flex: 1;">
     <p>
-      We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity we eventually landed on a 3.7V lithium-ion battery with 850mAh and an dimensions 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7 down to 3.3 to power everything on the board the TLV1117LV33 (which can provide up to that peak 1A). It was suprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider swtiches are usually under 500mA, and most rockers were too big. Fortunately we found a toggle switch 200MSP1T2B4M2QE by E-Swtich that has a satisfying click.
+      We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity, we eventually landed on a 3.7V lithium-ion battery with 850mAh and dimensions of 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7V down to 3.3V to power everything on the board: the TLV1117LV33 (which can provide up to that peak 1A). It was surprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider switches are usually rated under 500mA, and most rockers were too big. Fortunately, we found a toggle switch (200MSP1T2B4M2QE by E-Switch) that has a satisfying click.
       <br /><br />
-      After about 10 days the PCB arrived. There was one mistake involving the power switch, where the off pin was tied into the ground net so the battery was shorted when turned off. Fortunately we powered everything with a lab supply unit and corrected this issue by clipping the third pin of the switch. We also discovered the actual current draw of the system was much lower than expected at &lt;250mA. This was a great result for our battery life which we eventually tested to exceed 3 hours for each sensor node. The battery is set into the bottom of the housing a splices connector goes into the board and there is a slot where the charging cord can tuck into the bottom. 
+      After about 10 days, the PCB arrived. There was one mistake involving the power switch, where the off pin was tied into the ground net, so the battery was shorted when turned off. Fortunately, we powered everything with a lab supply unit and corrected this issue by clipping the third pin of the switch. We also discovered the actual current draw of the system was much lower than expected at &lt;250mA. This was a great result for our battery life, which we eventually tested to exceed 3 hours for each sensor node. The battery is set into the bottom of the housing, a spliced connector goes into the board, and there is a slot where the charging cord can tuck into the bottom.
     </p>
   </div>
 </div>
+
 
 
 <div id="pcb-section" style="margin-left: 20px; text-align: left;">
