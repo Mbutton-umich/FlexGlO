@@ -76,7 +76,7 @@ description: See my new project!
       The result? A spectacular symphony of light, brought to life by vibrant <strong>LEDs</strong>, dynamically illuminating your movements in real-time. Witness the light of your own heart pulse on your chest, captured via <strong>EKG (electrocardiogram)</strong>.
     </p>
   </div>
-  <!-- GIF Section -->
+
   <div style="flex: 1; text-align: center;">
     <img src="assets/gifs/gif_ex.gif" alt="FlexGlO demo GIF" style="max-width: 100%; height: auto; border-radius: 8px;">
     <p style="font-style: italic; margin-top: 8px; font-size: 12px;">
@@ -116,10 +116,10 @@ Are you cheating on your curls? Now we can see that you are. Quantify muscle imb
     <img src="assets/images/shirt_layout.png" alt="Shirt Layout" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 1; text-align: center; padding: 0 10px; border-right: 1px solid #ccc;">
-    <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 2" style="max-width: 100%; height: auto;">
+    <img src="assets/images/Shine.jpg" alt="Shiney Photo" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 1; text-align: center; padding-left: 10px;">
-    <img src="assets/gifs/gif_ex.gif" alt="FlexGlO Action 3" style="max-width: 100%; height: auto;">
+    <img src="assets/images/batman2.jpg" alt="FlexGlO Action 3" style="max-width: 100%; height: auto;">
   </div>
 </div>
 
@@ -331,10 +331,26 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 
 <div style="margin-left: 20px; text-align: left;">
   <p>
-    We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity we eventually landed on a 3.7V lithium-ion battery with 850mAh and an dimensions 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7 down to 3.3 to power everything on the board the TLV1117LV33 (which can provide up to that peak 1A). It was suprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider swtiches are usually under 500mA, and most rockers were too big. Fortunately we found a toggle switch 200MSP1T2B4M2QE by E-Swtich that has a satisfying click.
-    <br><br>
-    After about 10 days the PCB arrived. There was one mistake involving the power switch, where the off pin was tied into the ground net so the battery was shorted when turned off. Fortunately we powered everything with a lab supply unit and corrected this issue by clipping the third pin of the switch. We also discovered the actual current draw of the system was much lower than expected at &lt;250mA. This was a great result for our battery life which we eventually tested to exceed 3 hours for each sensor node. 
+
   </p>
+</div>
+
+
+<div style="display: flex; align-items: flex-start; margin-left: 20px; gap: 20px;">
+  <!-- Image and caption container -->
+  <div style="flex: 0 0 300px; text-align: center;">
+    <img src="assets/images/battery.jpg" alt="Battery" style="max-width: 80%; height: auto; border: 1px solid #ccc; padding: 5px;">
+    <p style="font-size: 12px; font-style: italic; margin-top: 5px;">Fig. X: The rechareable LiPo Pouch Integrated into the 3D printed housing</p>
+  </div>
+
+  <!-- Text container -->
+  <div style="flex: 1;">
+    <p>
+      We also wanted the system to last at least 1 hour (a time chunk long enough for a reasonable workout). Filtering through battery options that had a small (wearable) form factor, were 3.7 volts, and close to 1Ah in capacity we eventually landed on a 3.7V lithium-ion battery with 850mAh and an dimensions 43.0mm x 34.0mm x 6.2mm. We also found a Low-Dropout Linear Regulator (LDO) from TI that could step the 3.7 down to 3.3 to power everything on the board the TLV1117LV33 (which can provide up to that peak 1A). It was suprisingly difficult to find a small and inexpensive on/off switch that could handle a full 1A. It seemed that slider swtiches are usually under 500mA, and most rockers were too big. Fortunately we found a toggle switch 200MSP1T2B4M2QE by E-Swtich that has a satisfying click.
+      <br><br>
+      After about 10 days the PCB arrived. There was one mistake involving the power switch, where the off pin was tied into the ground net so the battery was shorted when turned off. Fortunately we powered everything with a lab supply unit and corrected this issue by clipping the third pin of the switch. We also discovered the actual current draw of the system was much lower than expected at &lt;250mA. This was a great result for our battery life which we eventually tested to exceed 3 hours for each sensor node. The battery is set into the bottom of the housing a splices connector goes into the board and there is a slot where the charging cord can tuck into the bottom. 
+    </p>
+  </div>
 </div>
 
 
@@ -371,7 +387,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </div>
 
 <p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 5px;">
-  Fig. IX: [TOP LEFT CLOCKWISE] The four layers of the <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span> PCB.
+  Fig. XI: [TOP LEFT CLOCKWISE] The four layers of the <span style="color:#39FF14;">FlexGl</span><span style="color:#FF073A;">O</span> PCB.
 </p>
 
 <div style="margin-left: 20px; text-align: left;">
@@ -410,7 +426,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </div>
 
 <p style="text-align: center; font-style: italic; font-size: 12px; margin-top: 10px;">
-  Fig. X: [Left] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB top-view 3D rendering. [Center] Busy KiCad PCB design overall view. [Right] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB side-view 3D rendering.
+  Fig. XII: [Left] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB top-view 3D rendering. [Center] Busy KiCad PCB design overall view. [Right] <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB side-view 3D rendering.
 </p>
 
 <div style="margin-left: 20px; text-align: left;">
@@ -421,7 +437,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
     mechanical support, so we had to re-solder those frequently over the course of debugging. The worst assembly issue involved the filter amps, 
     which were extremely sensitive to poor solder joints or even spare flux. We would assemble the whole system into its housing and find that the 
     slight torsion on the board had lifted the pins of the amp slightly, causing erratic behavior on the LEDs. We discovered this issue after 
-    significant struggle when we accidentally pressed different corners of the Quad-Amps and found the system would miraculously work as intended. 
+    significant struggle when we accidentally pressed different corners of the quad-amps and found the system would miraculously work as intended. 
   </p>
 </div>
 
@@ -438,7 +454,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 </div>
 
 <p style="text-align: center; font-size: 12px; font-style: italic; margin-top: 10px;">
-  Fig. XI: [Left] PCB from JLPCB with rails. [Center] Fully assembled <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB. [Right] Soldering the bottom TRRS jack for Node 0.
+  Fig. XIII: [Left] PCB from JLPCB with rails. [Center] Fully assembled <span style="color: #39FF14;">FlexGl</span><span style="color: #FF073A;">O</span> PCB. [Right] Soldering the bottom TRRS jack for Node 0.
 </p>
 
 <div id="ble-section" style="display: block; padding-bottom: 20px;">
@@ -531,7 +547,7 @@ Fig. VII: Arduino Serial Plotter showing rectification of a 20mV signal at 32Hz.
 <p>
   We fully appreciate the facilities that the University of Michigan (Ann Arbor), provided to enable this project. This includes the EECS 473 Lab and the MESH (Michigan Embedded Systems Hub) Lab on North Campus, as well as the wide array of available equipment, ranging from oscilloscopes and wave generators to multimeters, soldering irons, and power supplies. We are also grateful for their extensive inventory of passive components, consumables (bare wire, flux, solder paste), and modules, which significantly eased the process of prototyping.
   <br><br>
-  We were also well supported throughout the design process by Professor Mark Brehob and the EECS 473 lab staff, Matt Smith and James Carl. They provided invaluable counsel on significant design decisions and took the time to answer any questions, no matter how simple or redundant, on PCB design, assembly, software, and more. Their guidance was further complemented by the insights of the Fall '24 GSIs, who themselves had valuable experience from taking EECS 473 in prior semesters. Combined the staff strikes a great balance of 
+  We were also well supported throughout the design process by Professor Mark Brehob and the EECS 473 lab staff, Matt Smith and James Carl. They provided invaluable counsel on significant design decisions and took the time to answer any questions, no matter how simple or redundant, on PCB design, assembly, software, and more. Their guidance was further complemented by the insights of the Fall '24 GSIs, who themselves had valuable experience from taking EECS 473 in prior semesters.
   <br><br>
   Finally, we extend our thanks to Optiver, who generously provided funding for this year’s projects, contributing $1,000.00 per group. We also appreciated their guest lecture on the engineering challenges they face as a market maker in the realm of low-latency trading.
 </p>
